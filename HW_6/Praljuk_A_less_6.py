@@ -1,4 +1,4 @@
-`""" This module completes homework of the 5 lesson """
+""" This module completes homework of the 6 lesson """
 # TODO:
 
 # Task 1.
