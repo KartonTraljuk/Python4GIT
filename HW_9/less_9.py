@@ -108,7 +108,12 @@ from abc import ABC
 # ---------------------------------------------------------------------------
 # Task 4*. Create metaclass
 
-
+# class MyClass(metaclass=type):
+#     ...
+#
+#
+# mc = MyClass()
+# print(mc.__class__())
 
 
 
