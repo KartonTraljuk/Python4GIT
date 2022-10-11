@@ -151,7 +151,7 @@ car_1.move()
 car_1.stop()
 
 
-# Car "Renault"
+# Car "BMW"
 car_2 = Car('BMW', 1998, 'BLACK', '530', 2100, 235)
 print(f'===================== I M  CAR !!!! =========================')
 print(
