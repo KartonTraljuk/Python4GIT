@@ -19,6 +19,7 @@ def generation_1(item: int):
 iter_obj_1 = generation_1(2)
 
 print(list(generation_1(2)))  # Вывод списком
+
 for i in iter_obj_1:
     print(i)
 
@@ -41,7 +42,4 @@ for i in iter_obj_2:
     print(i)
     if i > 100:
         break
-
-
-
 
