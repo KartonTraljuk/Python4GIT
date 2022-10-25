@@ -1,0 +1,114 @@
+CREATE SCHEMA IF NOT EXISTS `my_hw_13`;
+
+USE `my_hw_13`;
+
+CREATE TABLE IF NOT EXISTS `school_79` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(40) NOT NULL,
+`age` INT,
+`class` INT,
+`avg_grade` FLOAT
+);
+
+CREATE TABLE IF NOT EXISTS `school_80` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(40) NOT NULL,
+`age` INT,
+`class` INT,
+`avg_grade` FLOAT
+);
+
+INSERT INTO `school_79` VALUES
+(1, 'Ivanov Ivan', 7, 1, 8.7),
+(2, 'Petrov Petr', 8, 2, 8.8),
+(3, 'Sidorova Alena', 9, 3, 8.9),
+(4, 'Midlov Serhey', 10, 4, 6.7),
+(5, 'Lipova Oksana', 11, 5, 5.4),
+(6, 'Buharevich Igor', 12, 6, 9.4),
+(7, 'Dayrova Elena', 13, 7, 8.0),
+(8, 'Pochepov Vladimir', 14, 8, 7.0),
+(9, 'Fursov Nikita', 15, 9, 8.1),
+(10, 'Pestraya Irina', 16, 10, 9.1),
+(11, 'Botanov Mihail', 17, 11, 9.9);
+
+INSERT INTO `school_80` VALUES
+(1, 'Delphi Oleg', 7, 1, 5.6),
+(2, 'Oracle Denis ', 8, 2, 4.2),
+(3, 'Python Dimitar', 9, 3, 7.9),
+(4, 'Tarantul Anna', 10, 4, 5.7),
+(5, 'Java Yana', 11, 5, 9.3),
+(6, 'Povidlov John', 12, 6, 7.4),
+(7, 'Reader Nina', 13, 7, 8.2),
+(8, 'Joinov Petr', 14, 8, 7.3),
+(9, 'Printova Lesya', 15, 9, 6.1),
+(10, 'Prostov Ivan', 16, 10, 4.2),
+(11, 'Kikimorova Nika', 17, 11, 9.8);
+
+
+SELECT `name`, `age`, `class`, `avg_grade` FROM `school_79`
+WHERE `id` = 1;
+
+SELECT `name`, `age`, `class`, `avg_grade` FROM `school_80`
+WHERE `id` = 2;
+
+SELECT `school_79`.`name`, `school_80`.`name`
+FROM `school_79`
+LEFT JOIN `school_80`
+ON `school_79`.`id` = `school_80`.`id`;
+
+SELECT `name`, `age`, `class`, `avg_grade`
+FROM `school_79`
+WHERE `avg_grade` = (SELECT MAX(`avg_grade`) FROM `school_79`);
+
+SELECT `name`, `age`, `class`, `avg_grade`
+FROM `school_80`
+WHERE `avg_grade` >= 7
+ORDER BY `avg_grade`;
+
+SELECT *
+FROM `school_80`
+WHERE `school_80`.`age` >= 9
+ORDER BY `school_80`.`age` DESC;
+
+# для полного понимания создал еще 2 таблицы разные по своим полям
+
+CREATE TABLE IF NOT EXISTS `class_7B` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(40) NOT NULL,
+`age` INT
+);
+
+CREATE TABLE IF NOT EXISTS `more_info` (
+`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`gender` VARCHAR(40),
+`color_of_dress` VARCHAR(40)
+);
+
+INSERT INTO `class_7B` VALUES
+(1, 'Ivanov Ivan', 7),
+(2, 'Petrov Petr', 9),
+(3, 'Sidorova Alena', 11),
+(4, 'Kola Yula', NULL),
+(5, 'Midlov Serhey', 15);
+
+INSERT INTO `more_info` VALUES
+(1, 'male', 'blue'),
+(2, NULL, 'black'),
+(3, 'female', 'pink'),
+(4, 'male', NULL),
+(5, 'male', 'green');
+
+SELECT * FROM `class_7B`
+WHERE `id` = 1;
+
+SELECT `class_7B`.`name`, `class_7B`.`age`,
+`more_info`.`color_of_dress`
+FROM `class_7B`
+INNER JOIN `more_info`
+ON `class_7B`.`id` = `more_info`.`id`
+GROUP BY `class_7B`.`id`;
+
+SELECT * FROM `class_7B`
+INNER JOIN `more_info`
+ON `class_7B`.`id` = `more_info`.`id`
+WHERE `more_info`.color_of_dress IS NULL;
